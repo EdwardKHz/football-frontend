@@ -12,7 +12,6 @@ const TopLeagues = () => {
             try {
                 const data = await leagueService.getTopLeagues();
                 setTopLeagues(data);
-                console.log(data);
             } catch (err) {
                 console.error('Failed to load leagues', err);
             }
