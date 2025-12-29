@@ -14,7 +14,6 @@ const AllLeagues = () => {
             try {
                 const data = await leagueService.getAllLeagues();
                 const groupedLeagues = groupCountriesWithLeagues(data);
-                console.log(groupedLeagues);
                 setAllLeagues(groupedLeagues);
             } catch (err) {
                 console.error('Failed to load leagues', err);

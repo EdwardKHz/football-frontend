@@ -1,15 +1,12 @@
-import TopLeagues from "./TopLeagues.jsx";
-import LeagueFixtures from "./LeagueFixtures.jsx";
-import {Container} from "react-bootstrap";
-import AllLeagues from "./AllLeagues.jsx";
+import Header from "../Header/Header.jsx";
+import Main from "./Main.jsx";
 
 const Home = () => {
     return (
-        <Container>
-            <TopLeagues/>
-            <LeagueFixtures />
-            <AllLeagues />
-        </Container>
+        <div className="container">
+            <Header/>
+            <Main/>
+        </div>
     )
 }
 

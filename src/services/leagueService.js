@@ -10,4 +10,14 @@ const getAllLeagues = async () => {
     return request.data;
 }
 
-export default { getTopLeagues, getAllLeagues };
+const getLeagueInfo = async (leagueId) => {
+    const request = await axios.get(`http://localhost:3000/api/leagues/${leagueId}`);
+    return request.data;
+}
+
+const getLeagueStandings = async (leagueId, season) => {
+    const request = await axios.get(`http://localhost:3000/api/leagues/${leagueId}/standings/${season}`);
+    return request.data;
+}
+
+export default {getTopLeagues, getAllLeagues, getLeagueInfo, getLeagueStandings};
