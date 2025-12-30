@@ -1,4 +1,5 @@
 import {Nav, Navbar} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
 
 const HeaderNavbar = () => {
     return (
@@ -7,11 +8,12 @@ const HeaderNavbar = () => {
                 className="me-auto my-2 my-lg-0"
                 navbarScroll
             >
-                <Nav.Link href="#action1">Overview</Nav.Link>
-                <Nav.Link href="#action2">Table</Nav.Link>
-                <Nav.Link href="#action2">Fixtures</Nav.Link>
-                <Nav.Link href="#action2">Stats</Nav.Link>
-                <Nav.Link href="#action2">Seasons</Nav.Link>
+                <NavLink to="overview" className="nav-link">Overview</NavLink>
+                <NavLink to="table" className="nav-link">Table</NavLink>
+                <NavLink to="fixtures" className="nav-link">Fixtures</NavLink>
+                <NavLink to="stats" className="nav-link">Stats</NavLink>
+                <NavLink to="seasons" className="nav-link">Seasons</NavLink>
+                <NavLink to="news" className="nav-link">News</NavLink>
             </Nav>
         </Navbar>
     );

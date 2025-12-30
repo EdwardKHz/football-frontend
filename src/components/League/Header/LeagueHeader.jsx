@@ -3,7 +3,7 @@ import leagueService from "../../../services/leagueService.js";
 import {Button, Container, Stack} from "react-bootstrap";
 import HeaderNavbar from "./HeaderNavbar.jsx";
 import SeasonDropDown from "./SeasonDropDown.jsx";
-import LeagueInfo from "../LeagueInfo.jsx";
+import LeagueInfo from "./LeagueInfo.jsx";
 
 const LeagueHeader = ({leagueID}) => {
 
@@ -20,7 +20,7 @@ const LeagueHeader = ({leagueID}) => {
         }
 
         fetchLeagueInfo();
-    }, []);
+    }, [leagueID]);
 
     if (!leagueInfo) {
         return <div>Loading...</div>

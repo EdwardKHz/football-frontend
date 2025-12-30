@@ -1,18 +1,23 @@
-import {Card, ListGroup} from "react-bootstrap";
+import {Card, ListGroup, Row, Stack} from "react-bootstrap";
+import StatCardButton from "./StatCardButton.jsx";
 
-const StatCard = ({leagueID ,season}) => {
+const StatCard = ({title , leaderboard ,stat}) => {
+
+
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card style={{width: '18rem' }}>
             <Card.Body>
-                <Card.Title>Top scorers</Card.Title>
+                <Card.Title>{title}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                {leaderboard.slice(0,3).map((player) => (
+                    <ListGroup.Item key={player.playerid} className="d-flex align-items-center">
+                        <StatCardButton stat={stat} player={player} />
+                    </ListGroup.Item>
+                ))}
             </ListGroup>
-            <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
+            <Card.Body className= "d-flex justify-content-center">
+                <Card.Link href="#">All</Card.Link>
             </Card.Body>
         </Card>
     )

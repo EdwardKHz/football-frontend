@@ -1,23 +1,9 @@
-import {useEffect, useState} from "react";
-import leagueService from "../../services/leagueService.js";
 import {Table} from "react-bootstrap";
+import {useOutletContext} from "react-router-dom";
 
-const LeagueStandings = ({leagueID}) => {
+const LeagueStandings = () => {
 
-    const [leagueStandings, setLeagueStandings] = useState([]);
-
-    useEffect(() => {
-        async function fetchLeagueData() {
-            try {
-                const data = await leagueService.getLeagueStandings(leagueID, 2023);
-                setLeagueStandings(data);
-            } catch (err) {
-                console.error('Failed to load leagues', err);
-            }
-        }
-
-        fetchLeagueData();
-    }, []);
+    const { leagueStandings } = useOutletContext();
 
     return (
         <Table>
