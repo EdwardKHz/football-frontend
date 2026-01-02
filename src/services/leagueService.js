@@ -40,4 +40,14 @@ const getLeagueMostRedCards = async (leagueId, season) => {
     return request.data;
 }
 
-export default {getTopLeagues, getAllLeagues, getLeagueInfo, getLeagueStandings, getLeagueTopScorers, getLeagueTopAssisters, getLeagueMostYellowCards, getLeagueMostRedCards};
+const getLeagueSeasons = async (leagueId) => {
+    const request = await axios.get(`http://localhost:3000/api/leagues/${leagueId}/seasons`);
+    return request.data;
+}
+
+const getLeagueWinners = async (leagueId) => {
+    const request = await axios.get(`http://localhost:3000/api/leagues/${leagueId}/seasons/winners`);
+    return request.data;
+}
+
+export default {getTopLeagues, getAllLeagues, getLeagueInfo, getLeagueStandings, getLeagueTopScorers, getLeagueTopAssisters, getLeagueMostYellowCards, getLeagueMostRedCards, getLeagueSeasons, getLeagueWinners};

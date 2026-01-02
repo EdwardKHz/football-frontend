@@ -22,3 +22,25 @@ export function groupCountriesWithLeagues(rows) {
     );
 }
 
+export function groupStandingsBySeason(rows) {
+    return Object.values(
+        rows.reduce((acc, row) => {
+            const season = row.season;
+
+            if (!acc[season]) {
+                acc[season] = {
+                    season,
+                    first: null,
+                    second: null
+                };
+            }
+
+            if (row.rank === 1) acc[season].first = row;
+            if (row.rank === 2) acc[season].second = row;
+
+            return acc;
+        }, {})
+    ).sort((a, b) => b.season - a.season);
+}
+
+
