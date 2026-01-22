@@ -1,8 +1,10 @@
-import {Card, ListGroup, Row, Stack} from "react-bootstrap";
+import {Card, ListGroup} from "react-bootstrap";
 import StatCardButton from "./StatCardButton.jsx";
+import {Link, useParams} from "react-router-dom";
 
-const StatCard = ({title , leaderboard ,stat}) => {
+const StatCard = ({title , leaderboard ,stat, statType, season}) => {
 
+    const {leagueID} = useParams();
 
     return (
         <Card style={{width: '18rem' }}>
@@ -17,7 +19,7 @@ const StatCard = ({title , leaderboard ,stat}) => {
                 ))}
             </ListGroup>
             <Card.Body className= "d-flex justify-content-center">
-                <Card.Link href="#">All</Card.Link>
+                <Link to={`/leagues/${leagueID}/stats/season/${season}/players/${statType}`}>All</Link>
             </Card.Body>
         </Card>
     )

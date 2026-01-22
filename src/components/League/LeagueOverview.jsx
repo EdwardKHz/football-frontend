@@ -1,15 +1,16 @@
 import LeagueStandings from "./LeagueStandings.jsx";
-import {useOutletContext, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import StatCard from "./StatCard.jsx";
 import {Stack} from "react-bootstrap";
+import {useStats} from "./StatsContext.jsx";
 
 const LeagueOverview = () => {
 
     const {leagueID} = useParams();
-    const {topScorers} = useOutletContext();
-    const {topAssisters} = useOutletContext();
-    const {mostYellowCards} = useOutletContext();
-    const {mostRedCards} = useOutletContext();
+    const {topScorers} = useStats();
+    const {topAssisters} = useStats();
+    const {mostYellowCards} = useStats();
+    const {mostRedCards} = useStats();
 
     return (
         <>

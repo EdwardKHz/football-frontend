@@ -6,16 +6,31 @@ import LeagueOverview from "./components/League/LeagueOverview.jsx";
 import LeagueStandings from "./components/League/LeagueStandings.jsx";
 import StatPage from "./components/League/StatPage.jsx";
 import SeasonsPage from "./components/League/SeasonsPage.jsx";
+import AllStatsPage from "./components/League/AllStatsPage.jsx";
+import HomeLayout from "./components/Home/HomeLayout.jsx";
+import {StatsProvider} from "./components/League/StatsContext.jsx";
 
 const App = () => {
     return (
         <Routes>
             <Route path="" element={<Home />} />
-            <Route path="/leagues/:leagueID" element={<LeagueLayout />}>
+            <Route path="/leagues/:leagueID" element={<StatsProvider> <LeagueLayout /> </StatsProvider>}>
+
                 <Route path="overview" element={<LeagueOverview />} />
+                <Route path="overview/season/:season" element={<LeagueOverview />} />
+
                 <Route path="table" element={<LeagueStandings />} />
+                <Route path="table/season/:season" element={<LeagueStandings />} />
+
                 <Route path="stats" element={<StatPage />} />
+                <Route path="stats/season/:season" element={<StatPage />} />
+
                 <Route path="seasons" element={<SeasonsPage />} />
+                <Route path="seasons/season/:season" element={<SeasonsPage />} />
+
+            </Route>
+            <Route path="/leagues/:leagueID/stats/season/:season/players" element={<HomeLayout />}>
+                <Route path=":statType" element={<StatsProvider> <AllStatsPage /> </StatsProvider>} />
             </Route>
         </Routes>
     )

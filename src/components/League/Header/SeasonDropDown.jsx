@@ -1,16 +1,28 @@
 import {Dropdown} from "react-bootstrap";
+import {Link, useLocation} from "react-router-dom";
 
-const SeasonDropDown = () => {
+const SeasonDropDown = ({seasons}) => {
+
+    const location = useLocation();
+
+    const basePath = location.pathname.split("/season")[0];
+
     return (
         <Dropdown className="ms-auto">
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
+                Season
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                {seasons.map(season => (
+                    <Dropdown.Item
+                        key={season}
+                        as={Link}
+                        to={`${basePath}/season/${season}`}
+                    >
+                        {season}
+                    </Dropdown.Item>
+                ))}
             </Dropdown.Menu>
         </Dropdown>
     );

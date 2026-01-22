@@ -5,7 +5,7 @@ import HeaderNavbar from "./HeaderNavbar.jsx";
 import SeasonDropDown from "./SeasonDropDown.jsx";
 import LeagueInfo from "./LeagueInfo.jsx";
 
-const LeagueHeader = ({leagueID}) => {
+const LeagueHeader = ({leagueID , seasons}) => {
 
     const [leagueInfo, setLeagueInfo] = useState(null);
 
@@ -33,7 +33,7 @@ const LeagueHeader = ({leagueID}) => {
 
                     <LeagueInfo leagueInfo={leagueInfo}/>
 
-                    <SeasonDropDown/>
+                    <SeasonDropDown seasons={seasons}/>
                     <Button variant="primary">Follow</Button>
                 </Stack>
 

@@ -6,81 +6,54 @@ import leagueService from "../../services/leagueService.js";
 
 const LeagueLayout = () => {
 
-    const {leagueID} = useParams();
+    const {leagueID, season} = useParams();
 
     const [leagueStandings, setLeagueStandings] = useState([]);
-    const [topScorers, setTopScorers] = useState([]);
-    const [topAssisters, setTopAssisters] = useState([]);
-    const [mostYellowCards, setMostYellowCards] = useState([]);
-    const [mostRedCards, setMostRedCards] = useState([]);
+    const [seasons, setSeasons] = useState([]);
 
-    async function fetchMostRedCards() {
-        try {
-            const data = await leagueService.getLeagueMostRedCards(leagueID, 2023);
-            setMostRedCards(data);
-        } catch (err) {
-            console.error('Failed to load most red cards', err);
-        }
-    }
+
 
     useEffect(() => {
+        async function fetchSeasons() {
+            try {
+                const data = await leagueService.getLeagueSeasons(leagueID);
+                setSeasons(data);
+            } catch (err) {
+                console.error('Failed to load seasons', err);
+            }
+        }
+
+        fetchSeasons();
+    }, [leagueID]);
+
+
+    const effectiveSeason = season ?? (seasons.length ? Math.max(...seasons.map(Number)) : undefined);
+
+
+
+    useEffect(() => {
+        if (!effectiveSeason) return;
+
         async function fetchLeagueStandings() {
             try {
-                const data = await leagueService.getLeagueStandings(leagueID, 2023);
+                const data = await leagueService.getLeagueStandings(leagueID, effectiveSeason);
                 setLeagueStandings(data);
             } catch (err) {
                 console.error('Failed to load leagues', err);
             }
         }
 
-        async function fetchLeagueTopScorers() {
-            try {
-                const data = await leagueService.getLeagueTopScorers(leagueID, 2023);
-                setTopScorers(data);
-            } catch (err) {
-                console.error('Failed to load top scorers', err);
-            }
-        }
-
-        async function fetchTopAssisters() {
-            try {
-                const data = await leagueService.getLeagueTopAssisters(leagueID, 2023);
-                setTopAssisters(data);
-            } catch (err) {
-                console.error('Failed to load top assisters', err);
-            }
-        }
-
-        async function fetchMostYellowCards() {
-            try {
-                const data = await leagueService.getLeagueMostYellowCards(leagueID, 2023);
-                setMostYellowCards(data);
-            } catch (err) {
-                console.error('Failed to load most yellow cards', err);
-            }
-        }
-
-
-
-
         fetchLeagueStandings();
-        fetchLeagueTopScorers();
-        fetchTopAssisters();
-        fetchMostYellowCards();
-        fetchMostRedCards();
 
-    }, [leagueID]);
+    }, [leagueID, effectiveSeason]);
 
 
     return (
         <Container>
-            <LeagueHeader leagueID={leagueID}/>
+            <LeagueHeader leagueID={leagueID} seasons={seasons} />
             <Outlet context={{
                 leagueStandings,
-                topScorers,
-                topAssisters,
-                mostYellowCards,
-                mostRedCards,
+                seasons
             }} />
         </Container>
     )
