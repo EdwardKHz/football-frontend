@@ -4,11 +4,11 @@ import Home from "./components/Home/Home.jsx";
 import LeagueLayout from "./components/League/LeagueLayout.jsx";
 import LeagueOverview from "./components/League/LeagueOverview.jsx";
 import LeagueStandings from "./components/League/LeagueStandings.jsx";
-import StatPage from "./components/League/StatPage.jsx";
-import SeasonsPage from "./components/League/SeasonsPage.jsx";
-import AllStatsPage from "./components/League/AllStatsPage.jsx";
+import StatPage from "./components/League/Stats/StatPage.jsx";
+import SeasonsPage from "./components/League/Seasons/SeasonsPage.jsx";
+import AllStatsPage from "./components/League/Stats/AllStatsPage.jsx";
 import HomeLayout from "./components/Home/HomeLayout.jsx";
-import {StatsProvider} from "./components/League/StatsContext.jsx";
+import {StatsProvider} from "./components/League//Stats/StatsContext.jsx";
 
 const App = () => {
     return (

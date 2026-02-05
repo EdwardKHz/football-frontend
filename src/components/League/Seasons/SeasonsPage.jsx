@@ -1,8 +1,8 @@
 import SeasonCard from "./SeasonCard.jsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import leagueService from "../../services/leagueService.js";
-import {groupStandingsBySeason} from "../../utils/ui_helper_functions.js";
+import leagueService from "../../../services/leagueService.js";
+import {groupStandingsBySeason} from "../../../utils/ui_helper_functions.js";
 
 const SeasonsPage = () => {
 

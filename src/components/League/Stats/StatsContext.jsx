@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useMemo, useState} from "react"
 import { useParams } from "react-router-dom"
-import leagueService from "../../services/leagueService.js";
+import leagueService from "../../../services/leagueService.js";
 
 const StatsContext = createContext(null)
 

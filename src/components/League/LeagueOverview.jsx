@@ -1,8 +1,8 @@
 import LeagueStandings from "./LeagueStandings.jsx";
 import {useParams} from "react-router-dom";
-import StatCard from "./StatCard.jsx";
+import StatCard from "./Stats/StatCard.jsx";
 import {Stack} from "react-bootstrap";
-import {useStats} from "./StatsContext.jsx";
+import {useStats} from "./Stats/StatsContext.jsx";
 
 const LeagueOverview = () => {
 
