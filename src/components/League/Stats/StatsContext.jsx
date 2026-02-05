@@ -6,6 +6,7 @@ const StatsContext = createContext(null)
 
 export const StatsProvider = ({ children }) => {
     const { leagueID, season} = useParams();
+
     const [topScorers, setTopScorers] = useState([]);
     const [topAssisters, setTopAssisters] = useState([]);
     const [mostYellowCards, setMostYellowCards] = useState([]);
@@ -95,7 +96,7 @@ export const StatsProvider = ({ children }) => {
         topAssisters,
         mostYellowCards,
         mostRedCards
-    ])
+    ]);
 
 
     return (

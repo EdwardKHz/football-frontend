@@ -9,6 +9,8 @@ import SeasonsPage from "./components/League/Seasons/SeasonsPage.jsx";
 import AllStatsPage from "./components/League/Stats/AllStatsPage.jsx";
 import HomeLayout from "./components/Home/HomeLayout.jsx";
 import {StatsProvider} from "./components/League//Stats/StatsContext.jsx";
+import TeamLayout from "./components/Team/TeamLayout.jsx";
+import {TeamProvider} from "./components/Team/TeamContext.jsx";
 
 const App = () => {
     return (
@@ -31,6 +33,10 @@ const App = () => {
             </Route>
             <Route path="/leagues/:leagueID/stats/season/:season/players" element={<HomeLayout />}>
                 <Route path=":statType" element={<StatsProvider> <AllStatsPage /> </StatsProvider>} />
+            </Route>
+
+            <Route path="/teams/:teamID" element={<TeamProvider> <TeamLayout /> </TeamProvider>}>
+
             </Route>
         </Routes>
     )
