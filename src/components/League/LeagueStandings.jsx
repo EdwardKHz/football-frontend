@@ -1,9 +1,10 @@
 import {Table} from "react-bootstrap";
-import {useOutletContext} from "react-router-dom";
 
-const LeagueStandings = () => {
+const LeagueStandings = ({leagueStandings}) => {
 
-    const { leagueStandings } = useOutletContext();
+    if (!leagueStandings) {
+        return;
+    }
 
     return (
         <Table>
@@ -23,7 +24,7 @@ const LeagueStandings = () => {
                 </tr>
             </thead>
             <tbody>
-            {leagueStandings.map((team) => (
+            {leagueStandings && leagueStandings.map((team) => (
                 <tr key={team.team_id}>
                     <td>{team.rank}</td>
                     <td><img src={team.logo} alt={team.team_name} style={{width: '20px', height: '20px'}}/></td>

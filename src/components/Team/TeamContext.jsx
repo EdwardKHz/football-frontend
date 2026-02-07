@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useMemo, useState} from "react";
 import teamService from "../../services/teamService.js";
 import {useParams} from "react-router-dom";
+import leagueService from "../../services/leagueService.js";
 
 const TeamContext = createContext(null);
 
@@ -10,6 +11,8 @@ export const TeamProvider = ({children}) => {
     const [teamInfo, setTeamInfo] = useState(null);
     const [teamVenue, setTeamVenue] = useState(null);
     const [teamLeagues, setTeamLeagues] = useState(null);
+    const [currentLeague, setCurrentLeague] = useState(null);
+    const [currentLeagueStandings, setCurrentLeagueStandings] = useState(null);
 
     useEffect(() => {
         async function fetchTeamInfo() {
@@ -39,22 +42,43 @@ export const TeamProvider = ({children}) => {
             }
         }
 
+
         fetchTeamInfo();
         fetchTeamVenue();
         fetchTeamLeagues();
     }, [teamID]);
 
+    useEffect(() => {
+        if (!currentLeague) return;
+
+        async function fetchCurrentLeagueStandings() {
+            try {
+                const data = await leagueService.getLeagueStandings(currentLeague, 2023);
+                setCurrentLeagueStandings(data);
+            } catch (error) {
+                console.error('Failed to load current league standings', error);
+            }
+        }
+
+        fetchCurrentLeagueStandings();
+    }, [currentLeague]);
+
     const value = useMemo(() => {
         return {
             teamInfo,
             teamVenue,
-            teamLeagues
+            teamLeagues,
+            currentLeague,
+            currentLeagueStandings,
+            setCurrentLeague
         }
     }, [
         teamInfo,
         teamVenue,
-        teamLeagues
-    ])
+        teamLeagues,
+        currentLeague,
+        currentLeagueStandings
+    ]);
 
     return (
         <TeamContext.Provider value={value}>

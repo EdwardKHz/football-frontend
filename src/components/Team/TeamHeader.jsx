@@ -1,4 +1,4 @@
-import {Stack} from "react-bootstrap";
+import {Button, Stack} from "react-bootstrap";
 
 const TeamHeader = ({teamInfo}) => {
 
@@ -11,6 +11,7 @@ const TeamHeader = ({teamInfo}) => {
                     <p>{teamInfo.country}</p>
                 </Stack>
             </Stack>
+            <Button>Follow</Button>
         </Stack>
     )
 
